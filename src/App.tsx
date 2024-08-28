@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './css/style.scss'
+import {Header} from "./components/Header/Header";
+import {Route, Routes} from "react-router-dom";
+import {Main} from "./components/Main/Main";
+import {HGR} from "./pages/Hand-Gesture-Recognition";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App() {
+    return (
+        <>
+            <div className={'container'}>
+                <Header/>
+                <Routes>
+                    <Route path={'/'} element={
+                        <Main/>
+                    }/>
+                    <Route path={'/hand-gesture'} element={
+                        <HGR/>
+                    }>
+                    </Route>
+                </Routes>
+            </div>
+        </>
+    );
 }
 
 export default App;

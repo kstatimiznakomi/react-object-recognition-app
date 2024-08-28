@@ -1,0 +1,1 @@
+export const afterLastURLSlash: string = "/" + document.URL.substring(document.URL.lastIndexOf('/') + 1)
