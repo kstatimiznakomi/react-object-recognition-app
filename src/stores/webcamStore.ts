@@ -22,19 +22,31 @@ export class WebcamStore {
         this.webcamSource.srcObject = stream
     }
 
+    public setSrcObject = (
+        video: React.MutableRefObject<HTMLVideoElement | null | undefined>,
+        value: MediaStream
+    ) => {
+        // @ts-ignore
+        video.current.srcObject = value
+    }
+
     @action
-    public getWebcam = (video: React.MutableRefObject<HTMLMediaElement | undefined>) => {
+    public getWebcam = (video: React.MutableRefObject<HTMLVideoElement | null | undefined>) => {
         try {
             getVideoFromWebcam()
                 .then((stream) => {
                     this.setWebcam(stream)
-                    // @ts-ignore-start
-                    //video.current?.srcObject = stream
-                    /*console.log(stream)
-                    console.log(this.webcamSource.srcObject)*/
+                    // @ts-ignore
+                    this.setSrcObject(video, stream)
                 })
         } catch (err) {
             console.log(err)
         }
+    }
+
+    @action
+    public stopWebcam = (video: React.MutableRefObject<HTMLVideoElement | null | undefined>) => {
+        // @ts-ignore
+        this.setSrcObject(video, null)
     }
 }
