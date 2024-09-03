@@ -18,7 +18,7 @@ export const OnOffCam: React.FC<OnOffCamProps> = observer(({className}) => {
 
     return (
         <>
-            <div className="d-grid gap-3 w-100 mt-3 mb-3 buttons">
+            <div className="d-flex flex-column gap-3 w-100 mt-3 mb-3 buttons">
                 <Button onClick={() => webcamStore1.setWebcamState(true)}
                         disabled={webcamStore1.isActiveWebcam}
                         className={'w-100 btn-webcam'}

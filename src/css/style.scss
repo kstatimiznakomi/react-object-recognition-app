@@ -17,7 +17,7 @@
 }
 
 .buttons {
-  min-width: 924px;
+  min-width: 550px;
 }
 
 .webcamVideo {
@@ -48,6 +48,7 @@
 .btn-webcam {
   border-radius: 5px;
   height: 50px;
+  border: none;
 }
 
 .link a:hover {
@@ -132,8 +133,11 @@ div .img-load-input:hover {
   margin-top: revert;
 }
 
+.w-min {
+  width: min-content;
+}
+
 .image-window {
-  min-height: 516px;
   min-width: 550px;
   border-radius: 34px;
   border-color: white;

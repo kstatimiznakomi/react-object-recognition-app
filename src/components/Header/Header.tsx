@@ -21,11 +21,11 @@ export const Header: React.FC = observer(() => {
     }
 
     return (
-        <header className={'header'}>
+        <header className={'header flex-wrap'}>
             {
                 pageEquals('/') ?
-                    <span className={'header_link_active'}>Главная</span> :
-                    <Link className={'header_link_to'} onClick={() => needs('/')} to={'/'}>На главную</Link>
+                    <span className={'header_link_active mb-2'}>Главная</span> :
+                    <Link className={'header_link_to mb-2'} onClick={() => needs('/')} to={'/'}>На главную</Link>
             }
             {
                 pageEquals('/hand-gesture') ?
