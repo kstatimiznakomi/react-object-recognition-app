@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from "react";
+import React, {useContext, useRef} from "react";
 import {webcamStore} from "../../stores";
 import {observer} from "mobx-react-lite";
 import Webcam from "react-webcam";
@@ -13,22 +13,83 @@ interface WebcamProps {
 export const WebcamComp: React.FC<WebcamProps> = observer(() => {
 
     const webcamStore1 = useContext(webcamStore)
-    const webcamRef = useRef(null)
+    const webcamRef: React.MutableRefObject<Webcam | null> = useRef(null)
     const imgRef: React.MutableRefObject<HTMLImageElement | null> = useRef(null)
+    let intervalId: number | undefined
 
-
-    useEffect(() => {
-        webcamStore1.isVideoToServer && (
-            // @ts-ignore
-            imgRef.current.src = webcamRef.current.getScreenshot()
-        )
-        /*if (webcamStore1.isActiveWebcam) {
-            webcamStore1.getWebcam(videoRef)
-            webcamStore1.startInterval(
-                videoRef, canvasRef, imgRef
+    const videoToImg = () => {
+        intervalId = window.setInterval(() => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            webcamStore1.isVideoToServer && (
+                // @ts-ignore
+                imgRef.current.src = webcamRef.current.getScreenshot()
             )
-        } else webcamStore1.stopWebcam(videoRef, imgRef)*/
-    }, [webcamStore1, webcamStore1.isActiveWebcam, webcamRef])
+        }, 100)
+    }
+
+    const bigCondition = () => {
+        if (webcamStore1.isActiveWebcam) {
+            if (webcamStore1.isVideoToServer) {
+                return <>
+                    <div>
+                        <WebcamSpan
+                            className={'title'}
+                            text={'Ваша камера'}/>
+                        11111
+                        <Webcam onPlay={() => videoToImg()} className={'webcamVideo'}
+                                ref={webcamRef}
+                                mirrored={true}
+                                autoPlay={true}
+                                screenshotFormat={"image/jpeg"}
+                                audio={false}
+                                width={500}
+                                height={375}/>
+                    </div>
+                    <div>
+                        <WebcamSpan
+                            className={'title'}
+                            text={'Распознанный жест'}/>
+                        <img ref={imgRef} className={'webcam_img'}/>
+                    </div>
+                </>
+            } else return <>
+                <div>
+                    <WebcamSpan
+                        className={'title'}
+                        text={'Ваша камера'}/>
+                    <Webcam className={'webcamVideo'}
+                            ref={webcamRef}
+                            mirrored={true}
+                            autoPlay={true}
+                            screenshotFormat={"image/jpeg"}
+                            audio={false}
+                            width={500}
+                            height={375}/>
+                </div>
+                <div>
+                    <WebcamSpan
+                        className={'title'}
+                        text={'Распознанный жест'}/>
+                    <OffWebcam/>
+                </div>
+            </>
+
+        } else return <>
+            <div>
+                <WebcamSpan
+                    className={'title'}
+                    text={'Ваша камера'}/>
+                <OffWebcam/>
+            </div>
+            <div>
+                <WebcamSpan
+                    className={'title'}
+                    text={'Распознанный жест'}/>
+                <OffWebcam/>
+            </div>
+
+        </>
+    }
 
     return (
         <div id="img-div" className="image-window mt-3 d-flex justify-content-center">
@@ -36,58 +97,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                   encType="multipart/form-data">
                 <div className={'d-flex mb-3 flex-wrap gap-3 justify-content-center align-items-center '}>
                     {
-                        webcamStore1.isActiveWebcam ?
-                            <>
-                                <div>
-                                    <WebcamSpan
-                                        className={'title'}
-                                        text={'Ваша камера'}/>
-                                    <Webcam className={'webcamVideo'}
-                                            ref={webcamRef}
-                                            mirrored={true}
-                                            autoPlay={true}
-                                            screenshotFormat={"image/jpeg"}
-                                            audio={false}
-                                            width={500}
-                                            height={375}/>
-                                </div>
-                                <div>
-                                    <WebcamSpan
-                                        className={'title'}
-                                        text={'Распознанный жест'}/>
-                                    <OffWebcam/>
-                                </div>
-                            </> :
-                            webcamStore1.isVideoToServer ?
-                                <>
-                                    <div>
-                                        <WebcamSpan
-                                            className={'title'}
-                                            text={'Ваша камера'}/>
-                                        <img ref={imgRef} className={'webcam_img'}/>
-                                    </div>
-
-                                </>
-                                :
-                                <>
-                                    <div>
-                                        <WebcamSpan
-                                            className={'title'}
-                                            text={'Ваша камера'}/>
-                                        <OffWebcam/>
-                                    </div>
-                                </>
-                    }
-                    {
-                        !webcamStore1.isActiveWebcam && <>
-                            <div>
-                                <WebcamSpan
-                                    className={'title'}
-                                    text={'Распознанный жест'}/>
-                                <OffWebcam/>
-                            </div>
-
-                        </>
+                        bigCondition()
                     }
                 </div>
             </form>
