@@ -49,7 +49,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                         <WebcamSpan
                             className={'title'}
                             text={'Распознанный жест'}/>
-                        <img ref={imgRef} className={'webcam_img'}/>
+                        <img alt={''} ref={imgRef} className={'webcam_img'}/>
                     </div>
                 </>
             } else return <>
@@ -83,7 +83,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
 
     useEffect(() => {
         videoToImg()
-    }, [webcamStore1.isVideoToServer])
+    })
 
     return (
         <div id="img-div" className="image-window mt-3 d-flex justify-content-center">
