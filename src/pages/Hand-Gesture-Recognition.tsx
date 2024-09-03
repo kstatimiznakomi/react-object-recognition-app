@@ -5,7 +5,7 @@ import {WebcamComp} from "../components/Webcam/Webcam";
 
 export const HGR: React.FC = () => {
     return (
-        <div className={'container d-flex flex-column'}>
+        <div className={'d-flex flex-column'}>
             <WebcamComp/>
             <OnOffCam/>
         </div>
