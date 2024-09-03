@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import {webcamStore} from "../../stores";
 import {observer} from "mobx-react-lite";
 import Webcam from "react-webcam";
@@ -35,8 +35,8 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                         <WebcamSpan
                             className={'title'}
                             text={'Ваша камера'}/>
-                        11111
-                        <Webcam onPlay={() => videoToImg()} className={'webcamVideo'}
+                        <Webcam onPlaying={() => videoToImg()}
+                                className={'webcamVideo'}
                                 ref={webcamRef}
                                 mirrored={true}
                                 autoPlay={true}
@@ -67,29 +67,23 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                             height={375}/>
                 </div>
                 <div>
-                    <WebcamSpan
-                        className={'title'}
-                        text={'Распознанный жест'}/>
-                    <OffWebcam/>
+                    <OffWebcam text={'Распознанный жест'}/>
                 </div>
             </>
 
         } else return <>
             <div>
-                <WebcamSpan
-                    className={'title'}
-                    text={'Ваша камера'}/>
-                <OffWebcam/>
+                <OffWebcam text={'Ваша камера'}/>
             </div>
             <div>
-                <WebcamSpan
-                    className={'title'}
-                    text={'Распознанный жест'}/>
-                <OffWebcam/>
+                <OffWebcam text={'Распознанный жест'}/>
             </div>
-
         </>
     }
+
+    useEffect(() => {
+        videoToImg()
+    }, [webcamStore1.isVideoToServer])
 
     return (
         <div id="img-div" className="image-window mt-3 d-flex justify-content-center">
