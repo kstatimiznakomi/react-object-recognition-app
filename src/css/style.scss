@@ -23,6 +23,7 @@
 .webcamVideo {
   width: 500px;
   height: 375px;
+  background-color: black;
 }
 
 
@@ -57,10 +58,14 @@
   display: none;
 }
 
+.title {
+  color: white;
+}
+
 .webcam_img {
   border-radius: 5px;
   width: 500px;
-  background-color: #666;
+  background-color: black;
   height: 375px;
   border: none;
 }
