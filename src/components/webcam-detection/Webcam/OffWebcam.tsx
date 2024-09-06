@@ -11,7 +11,7 @@ export const OffWebcam: React.FC<WebcamProps> = ({text}) => {
         <>
             <div>
                 <WebcamSpan
-                    className={'title'}
+                    className={'white'}
                     text={text}/>
             </div>
             <div className={'webcam_img'}></div>

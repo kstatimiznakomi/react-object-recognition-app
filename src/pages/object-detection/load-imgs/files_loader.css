@@ -3,6 +3,7 @@
   background-color: #1c1c1c;
   border-radius: 15px;
   padding: 30px;
+  min-width: 397px;
 }
 
 .loader__title {
@@ -10,7 +11,7 @@
 }
 
 .load__img {
-  width: 220px;
+  height: 70px;
 }
 
 .file__input {

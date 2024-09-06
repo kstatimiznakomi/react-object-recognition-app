@@ -34,7 +34,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                 return <>
                     <div>
                         <WebcamSpan
-                            className={'title'}
+                            className={'white'}
                             text={'Ваша камера'}/>
                         <Webcam onPlaying={() => videoToImg()}
                                 className={'webcamVideo'}
@@ -48,7 +48,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
                     </div>
                     <div>
                         <WebcamSpan
-                            className={'title'}
+                            className={'white'}
                             text={'Распознанный жест'}/>
                         <img alt={''} ref={imgRef} className={'webcam_img'}/>
                     </div>
@@ -56,7 +56,7 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
             } else return <>
                 <div>
                     <WebcamSpan
-                        className={'title'}
+                        className={'white'}
                         text={'Ваша камера'}/>
                     <Webcam className={'webcamVideo'}
                             ref={webcamRef}
