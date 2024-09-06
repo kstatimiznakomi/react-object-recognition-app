@@ -1,4 +1,5 @@
 export const enum SiteRoutes {
     '/',
-    '/hand-gesture'
+    '/hand-gesture',
+    '/load',
 }

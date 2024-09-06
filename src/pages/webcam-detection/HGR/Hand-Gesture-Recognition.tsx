@@ -1,6 +1,6 @@
 import React from "react";
-import {OnOffCam} from "../components/OnOffCam/OnOffCam";
-import {WebcamComp} from "../components/Webcam/Webcam";
+import {OnOffCam} from "../../../components/webcam-detection/OnOffCam/OnOffCam";
+import {WebcamComp} from "../../../components/webcam-detection/Webcam/Webcam";
 
 
 export const HGR: React.FC = () => {

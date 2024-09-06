@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useRef} from "react";
-import {webcamStore} from "../../stores";
+import {webcamStore} from "../../../stores";
 import {observer} from "mobx-react-lite";
 import Webcam from "react-webcam";
 import {OffWebcam} from "./OffWebcam";
@@ -23,8 +23,9 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
             webcamStore1.isVideoToServer && (
                 // @ts-ignore
                 imgRef.current.src = webcamRef.current.getScreenshot()
+                //webcamStore1.sendWebcamToServer(imgRef)
             )
-        }, 100)
+        }, 250)
     }
 
     const bigCondition = () => {
@@ -87,7 +88,8 @@ export const WebcamComp: React.FC<WebcamProps> = observer(() => {
 
     return (
         <div id="img-div" className="image-window mt-3 d-flex justify-content-center">
-            <form className="w-auto d-flex gap-3 flex-column" action="#" method="post"
+            <form className="w-auto d-flex gap-3 flex-column" action="src/components/webcam-detection/Webcam/Webcam#"
+                  method="post"
                   encType="multipart/form-data">
                 <div className={'d-flex mb-3 flex-wrap gap-3 justify-content-center align-items-center '}>
                     {

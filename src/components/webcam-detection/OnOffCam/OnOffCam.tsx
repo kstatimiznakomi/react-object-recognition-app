@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
-import {Button} from "../shared/Button";
-import {webcamStore} from "../../stores";
+import {Button} from "../../shared/Button";
+import {webcamStore} from "../../../stores";
 import {observer} from "mobx-react-lite";
 
 interface OnOffCamProps {

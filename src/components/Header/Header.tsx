@@ -11,7 +11,6 @@ export const Header: React.FC = observer(() => {
     const webcamStore1 = useContext(webcamStore)
 
     const pageEquals = (value: string) => {
-        console.log('1111')
         return page === value
     }
 

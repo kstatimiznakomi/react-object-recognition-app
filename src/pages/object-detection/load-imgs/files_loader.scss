@@ -1,0 +1,28 @@
+.loader__files {
+  width: 1000px;
+  background-color: #1c1c1c;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.loader__title {
+  font-size: xx-large;
+}
+
+.load__img {
+  width: 220px;
+}
+
+.file__input {
+  padding: 60px 100px;
+  background-color: #282c34;
+  border-radius: 15px;
+  color: white;
+  font-size: larger;
+  text-align: center;
+
+  &:hover {
+    background-color: #002f47;
+    cursor: pointer;
+  }
+}
